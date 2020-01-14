@@ -1,4 +1,4 @@
-public class PerfectNumber {
+public class PerfectNumber {765
 	// Given integer x, write a funciton that returns true when it is a perfect number and false when it is not.
     public static void main(String[] args) {
         int x = Integer.parseInt(args[0]);
