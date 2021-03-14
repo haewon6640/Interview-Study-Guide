@@ -9,9 +9,7 @@
 * Ex) Input: <6,2,1,5,4,3,0>
 *     Output: <6,2,3,0,1,4,5>
 */
-import java.util.ArrayList;
 import java.util.*;
-import java.util.List;
 
 public class Sampling {
   public static void main(String[] args) {
@@ -43,6 +41,7 @@ public class Sampling {
     for (int i = arr.size()-1; i > inversionPoint; --i) {
       if (arr.get(i) > arr.get(inversionPoint)) { 
         Collections.swap(arr, i, inversionPoint);
+        break;
       }
     }
     Collections.reverse(arr.subList(inversionPoint+1,arr.size()));
