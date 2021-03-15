@@ -11,7 +11,7 @@
 */
 import java.util.*;
 
-public class Sampling {
+public class Permutation {
   public static void main(String[] args) {
     // 1
     List<Integer> A = new ArrayList<Integer>(Arrays.asList(3, 6, 2, 1));
