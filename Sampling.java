@@ -32,5 +32,26 @@ public class Sampling {
     * We use that probability to determine whether it should be added or not,
     * then 
     */
-    public static void onlineSampling(List<Integer> list, 
+    // Assuming at least k elements in the stream
+    public static void onlineSampling(Iterator<Integer> stream, int k) {
+        List<Integer> runningSample = new ArrayList<>(k);
+        for (int i = 0; stream.hasNext() && i < k; i++) {
+            runningSample.add(stream.next());
+        }
+        
+        //Have read the first k elements
+        int numSeenSoFar = k;
+        Random randIdxGen = new Random();
+        while (stream.hasNext()) {
+            Integer x = stream.next();
+            ++numSeenSoFar;
+            // Geberate a random number in [0,numSeenSoFar], and if this number is in
+            //[0,k-1], we replace that element from the sample with x.
+            final int idxToReplace = randIdxGen.nextInt(numSeenSoFar);
+            if (idxToReplace < k) {
+                runningSample.set(idxToReplace, x);
+            }
+        return runningSample;
+        }
+    }
 }
