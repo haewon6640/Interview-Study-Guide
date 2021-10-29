@@ -1,4 +1,10 @@
 /*
+* 
+*
+* https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions
+*/
+
+/*
 *
 * Linked Lists
 *
@@ -43,3 +49,38 @@ public ListNode detectCycle(ListNode head) {
         }
         return null;
     }
+}
+
+
+/*
+*
+* Trees
+*
+*/
+
+
+/*
+* Maximum Depth of Binary Tree
+*/
+public int maxDepth(TreeNode root) {
+    if (root == null) {
+        return 0;
+    }
+    return Math.max(maxDepth(root.left),maxDepth(root.right))+1;
+}
+
+/*
+* Same Tree
+*/
+public boolean isSameTree(TreeNode p, TreeNode q) {
+    if (p == null && q == null) { return true;}
+    if ((p == null && q != null) || (p != null && q == null)) {
+        return false;
+    }
+    return p.val == q.val && isSameTree(p.left,q.left) && isSameTree(p.right,q.right);
+}
+/*
+* Invert Binary Tree
+*/
+
+
