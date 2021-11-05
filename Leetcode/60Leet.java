@@ -91,5 +91,24 @@ public TreeNode invertTree(TreeNode root) {
     root.right = invertTree(left);
     return root;
 }
-
+/*
+* Binary Tree Level Order Traversal
+*/
+public List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+    dfs(res, root,0);
+    return res;
+}
+public void dfs(List<List<Integer>> lst, TreeNode root, int height) {
+    if (root == null) {
+        return;
+    }
+    if (height == lst.size()) {
+        lst.add(new LinkedList<Integer>());
+    }
+    lst.get(height).add(root.val);
+    dfs(lst,root.left,height+1);
+    dfs(lst,root.right, height+1);
+    return;
+}
 
