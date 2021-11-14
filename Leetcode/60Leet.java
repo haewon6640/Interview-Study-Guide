@@ -175,3 +175,32 @@ public boolean sameTree(TreeNode root, TreeNode subRoot) {
     }
     return root.val == subRoot.val && sameTree(root.left, subRoot.left) && sameTree(root.right,subRoot.right);
 }
+
+/*
+* Construct Binary Tree from Preorder and Inorder Traversal
+*/
+
+public TreeNode buildTree(int[] preorder, int[] inorder) {
+  // pre[0] is the root node,
+  // find pre[0] val index in inorder
+  // inorder[0..i],[i+1,end] are left and right subarrays
+  // recurse with pre iteration starting in pre[1] and pre[1+i]
+  return buildTree(preorder, inorder, 0,inorder.length-1,0);
+}
+public TreeNode buildTree(int[] preorder, int[] inorder, int inStart, int inEnd, int preStart) {
+  if (preStart > preorder.length-1 || inStart > inEnd) {
+      return null;
+  }
+  TreeNode tnode = new TreeNode(preorder[preStart]);
+  int inIndex = 0; // index of the current node in inorder
+  for (int i = inStart; i <= inEnd; i++) {
+      if (inorder[i] == tnode.val) {
+          inIndex = i;
+          break;
+      }
+  }
+  tnode.left = buildTree(preorder, inorder, inStart, inIndex-1, preStart+1);
+  tnode.right = buildTree(preorder, inorder, inIndex+1, inEnd, preStart+inIndex-inStart+1);
+  return tnode;
+
+}
