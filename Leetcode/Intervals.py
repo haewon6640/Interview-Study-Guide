@@ -19,3 +19,17 @@ class Solution:
             result.append(intervals[i])
             i = i+1
         return result
+
+# Merge Interval
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+
+        #Sort By start
+        intervals.sort()
+        ans = [intervals[0]]
+        for i in intervals:
+            if i[0] <= ans[-1][1]:
+                ans[-1][1] = max(i[1],ans[-1][1])
+            else:
+                ans.append(i)
+        return ans
